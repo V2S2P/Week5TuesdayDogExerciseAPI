@@ -1,0 +1,40 @@
+### Test root endpoint
+GET http://localhost:7007/api/v1
+
+###
+
+### Create Dog
+POST http://localhost:7007/api/v1/dog
+Content-Type: application/json
+
+{
+  "name": "Hugo",
+  "breed": "Golden-Retriever",
+  "gender": "Male",
+  "age": 3
+}
+###
+
+### Get all dogs
+GET http://localhost:7007/api/v1/dog
+###
+
+### Get dog by id
+GET http://localhost:7007/api/v1/dog/2
+###
+
+### Update dog
+PUT http://localhost:7007/api/v1/dog/1
+Content-Type: application/json
+
+{
+  "name": "Hugo",
+  "breed": "Golden-Retriever",
+  "gender": "Male",
+  "age": 4
+}
+###
+
+### Delete dog
+DELETE http://localhost:7007/api/v1/dog/1
+###
