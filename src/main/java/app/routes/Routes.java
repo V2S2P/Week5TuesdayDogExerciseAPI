@@ -10,7 +10,7 @@ public class Routes {
     public EndpointGroup getRoutes(){
         return () -> {
             get("/", ctx -> ctx.result("Hello World!"));
-            path("/dog", dogRoutes.getRoutes());
+            path("/dog", dogRoutes.getRoutes()); //endpoint name, can call it whatever you want (dog, puppy, flower, etc.)
         };
     }
 }
