@@ -29,53 +29,59 @@ public class PoemDAO {
         }
     }
 
-    public PoemDTO getPoemById(int id) {
+    public Poem getPoemById(int id) {
         try (var em = emf.createEntityManager()) {
-            Poem poem = em.find(Poem.class, id);
-            return poem != null ? new PoemDTO(poem) : null;
+            return em.find(Poem.class, id);  // 👈 return entity only
         }
     }
 
-    public PoemDTO createPoem(PoemDTO poemDTO) {
-        Poem poem = new Poem(poemDTO);
+    public Poem createPoem(Poem poem) {
         try (var em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.persist(poem);
             em.getTransaction().commit();
-            return new PoemDTO(poem);
+            return poem;  // 👈 return entity
         }
     }
 
-    public PoemDTO updatePoem(int id, PoemDTO poemDTO) {
+    public Poem updatePoem(int id, String newText) {
         try (var em = emf.createEntityManager()) {
             Poem poem = em.find(Poem.class, id);
             if (poem == null) return null;
 
             em.getTransaction().begin();
-            poem.setPoem(poemDTO.getPoem());
+            poem.setPoem(newText);   // 👈 update only the field(s)
             em.merge(poem);
             em.getTransaction().commit();
 
-            return new PoemDTO(poem);
+            return poem;  // 👈 return updated entity
         }
     }
 
-    public void deletePoem(int id) {
+    public boolean deletePoem(int id) {
         try (var em = emf.createEntityManager()) {
             em.getTransaction().begin();
             Poem poem = em.find(Poem.class, id);
             if (poem != null) {
                 em.remove(poem);
+                em.getTransaction().commit();
+                return true;   // 👈 deleted successfully
             }
-            em.getTransaction().commit();
+            em.getTransaction().rollback();
+            return false;  // 👈 nothing deleted
         }
     }
 
-    public void deleteAllPoems() {
+    public boolean deleteAllPoems() {
         try (var em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.createQuery("DELETE FROM Poem").executeUpdate();
+            //em.createNativeQuery("ALTER TABLE Poem RESTART WITH 1").executeUpdate();
             em.getTransaction().commit();
+            return true;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

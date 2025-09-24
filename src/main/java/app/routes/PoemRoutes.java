@@ -15,6 +15,7 @@ public class PoemRoutes {
             post("/", poemController::createPoem);
             put("/{id}", poemController::updatePoem);
             delete("/{id}", poemController::deletePoem);
+            delete("/", poemController::deleteAllPoems);
         };
     }
 }
