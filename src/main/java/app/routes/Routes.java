@@ -5,12 +5,12 @@ import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.path;
 
 public class Routes {
-    DogRoutes dogRoutes = new DogRoutes();
+    PoemRoutes poemRoutes = new PoemRoutes();
 
     public EndpointGroup getRoutes(){
         return () -> {
             get("/", ctx -> ctx.result("Hello World!"));
-            path("/dog", dogRoutes.getRoutes()); //endpoint name, can call it whatever you want (dog, puppy, flower, etc.)
+            path("/poem", poemRoutes.getRoutes()); //endpoint name, can call it whatever you want (dog, puppy, flower, etc.)
         };
     }
 }

@@ -3,38 +3,32 @@ GET http://localhost:7007/api/v1
 
 ###
 
-### Create Dog
-POST http://localhost:7007/api/v1/dog
+### Create Poem
+POST http://localhost:7007/api/v1/poem
 Content-Type: application/json
 
 {
-  "name": "Hugo",
-  "breed": "Golden-Retriever",
-  "gender": "Male",
-  "age": 3
+  "poem": "Autumn leaves drifting, whispers carried on the breeze, time folds into dusk."
 }
 ###
 
-### Get all dogs
-GET http://localhost:7007/api/v1/dog
+### Get all haikuses
+GET http://localhost:7007/api/v1/poem
 ###
 
-### Get dog by id
-GET http://localhost:7007/api/v1/dog/2
+### Get poem by id
+GET http://localhost:7007/api/v1/poem/2
 ###
 
-### Update dog
-PUT http://localhost:7007/api/v1/dog/1
+### Update poem
+PUT http://localhost:7007/api/v1/poem/1
 Content-Type: application/json
 
 {
-  "name": "Hugo",
-  "breed": "Golden-Retriever",
-  "gender": "Male",
-  "age": 4
+  "poem": "I have shat my pants, oops hehe"
 }
 ###
 
-### Delete dog
-DELETE http://localhost:7007/api/v1/dog/1
+### Delete poem
+DELETE http://localhost:7007/api/v1/poem/1
 ###
